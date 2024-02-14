@@ -108,6 +108,18 @@
         background-color: #8310ef;
     }
 
+    .come-here-button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: 2px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #000;
+        text-align: center;
+    }
 </style>
 </head>
 <body>
@@ -115,7 +127,7 @@
 <div class="button-grid" id="buttonGrid">
 </div>
 
-<button class="come-here-button" onclick="proceedToNextPage()">Come Here</button>
+<button class="come-here-button" onclick="proceedToNextPage()">Hug ME🫂</button>
 
 <script>
 // Define music files and their respective images
@@ -175,6 +187,13 @@ let currentAudio = null;
 // Shuffle music files' positions
 const shuffledMusicFiles = shuffleObjectKeys(musicFiles);
 
+// Preload all audio files
+for (const {file} of Object.values(shuffledMusicFiles)) {
+    const audio = new Audio();
+    audio.src = file;
+    audio.preload = 'auto';
+}
+
 // Populate buttons with shuffled music files
 const buttonGrid = document.getElementById('buttonGrid');
 for (const [buttonId, {file, image, color}] of Object.entries(shuffledMusicFiles)) {
@@ -209,6 +228,12 @@ function playMusic(button, musicFile, image) {
     audio.addEventListener('ended', () => {
         img.style.opacity = 0;
     });
+}
+
+// Function to proceed to the next page
+function proceedToNextPage() {
+    // Redirect to the next page
+    window.location.href = "valen.html";
 }
 
 // Function to shuffle object keys
